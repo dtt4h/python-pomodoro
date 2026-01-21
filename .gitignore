@@ -130,3 +130,12 @@ logs/
 
 # Data (if user-specific)
 data/
+
+# Build artifacts
+build/
+dist/
+*.spec
+*.exe
+
+# Setuptools
+*.egg-info/
