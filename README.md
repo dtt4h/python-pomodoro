@@ -1,81 +1,117 @@
-# Pomodoro Timer
+# Таймер Помодоро
 
-A modern, minimalist Pomodoro timer application built with Python and PyQt5. Features a dark theme, system tray integration, and persistent settings.
+Современное, минималистичное приложение таймера Помодоро, созданное с использованием Python и PyQt5. Включает темную тему, интеграцию с системным треем и постоянные настройки.
 
-## Features
+## Возможности
 
-- **Pomodoro Technique**: 25-minute work sessions with 5-minute short breaks and 15-minute long breaks
-- **Dark Minimalist UI**: Clean, modern interface with rounded buttons and smooth animations
-- **System Tray**: Minimize to tray and continue working in the background
-- **Persistent Settings**: Save your preferences and session data
-- **Logging**: Comprehensive logging for debugging and monitoring
-- **Customizable**: Adjust work/break times and session counts
+- **Техника Помодоро**: 25-минутные рабочие сессии с 5-минутными короткими перерывами и 15-минутными длинными перерывами
+- **Темный минималистичный интерфейс**: Чистый, современный интерфейс с закругленными кнопками и плавными анимациями
+- **Системный трей**: Свернуть в трей и продолжить работу в фоне
+- **Постоянные настройки**: Сохраняйте свои предпочтения и данные сессий
+- **Логирование**: Комплексное логирование для отладки и мониторинга
+- **Настраиваемый**: Настройте время работы/перерывов и количество сессий
 
-## Screenshots
+## Скриншоты
 
-![Pomodoro Timer](screenshot.png)
+![Таймер Помодоро](screenshot.png)
 
-## Installation
+## Установка
 
-### Prerequisites
+### Предварительные требования
 
 - Python 3.6+
 - PyQt5
 
-### Install Dependencies
+### Установка зависимостей
 
 ```bash
 pip install PyQt5
 ```
 
-### Run the Application
+### Запуск приложения
 
 ```bash
 python main.py
 ```
 
-## Usage
+## Сборка исполняемого файла
 
-1. **Start Timer**: Click the "Старт" (Start) button to begin a work session
-2. **Pause/Resume**: Use the "Пауза" (Pause) button to pause the timer
-3. **Reset**: Click "Сброс" (Reset) to restart the current session
-4. **Settings**: Adjust work time, break durations, and session counts in the settings panel
-5. **System Tray**: Minimize the app to continue in the background
+Чтобы создать автономный исполняемый файл Windows (.exe), который можно распространять пользователям без необходимости установки Python:
 
-## Project Structure
+### Предварительные требования
+
+- Python 3.6+
+- PyQt5 установлен
+- PyInstaller
+
+### Установка инструментов сборки
+
+```bash
+pip install pyinstaller
+```
+
+### Сборка исполняемого файла
+
+```bash
+pyinstaller --onefile --windowed --name PomodoroTimer main.py
+```
+
+### Альтернатива: Использование файла спецификации
+
+Файл спецификации PyInstaller предоставлен для большего контроля над процессом сборки:
+
+```bash
+pyinstaller pomodoro.spec
+```
+
+### Вывод
+
+Исполняемый файл `PomodoroTimer.exe` будет создан в директории `dist/`. Этот одиночный файл содержит все приложение и зависимости, что упрощает распространение.
+
+**Примечание**: Исполняемый файл включает встроенные файлы данных для настроек и логов, поэтому пользователи могут запускать его напрямую без дополнительной настройки.
+
+## Использование
+
+1. **Запуск таймера**: Нажмите кнопку "Старт" для начала рабочей сессии
+2. **Пауза/Возобновление**: Используйте кнопку "Пауза" для приостановки таймера
+3. **Сброс**: Нажмите "Сброс" для перезапуска текущей сессии
+4. **Настройки**: Настройте время работы, продолжительность перерывов и количество сессий в панели настроек
+5. **Системный трей**: Сверните приложение для продолжения работы в фоне
+
+## Структура проекта
 
 ```
 pomodoro-timer/
-├── main.py                 # Application entry point
+├── main.py                 # Точка входа приложения
 ├── controllers/
-│   └── controller.py       # MVC Controller
+│   └── controller.py       # Контроллер MVC
 ├── models/
-│   ├── timer_logic.py      # Timer logic and state management
-│   └── data_manager.py     # Data persistence (JSON)
+│   ├── timer_logic.py      # Логика таймера и управление состоянием
+│   └── data_manager.py     # Сохранение данных (JSON)
 ├── views/
-│   ├── ui.py               # Main UI components
-│   └── tray_icon.py        # System tray functionality
+│   ├── ui.py               # Основные компоненты интерфейса
+│   └── tray_icon.py        # Функциональность системного трея
 ├── utils/
-│   ├── constants.py        # Application constants and styles
-│   └── logger.py           # Logging configuration
-├── data/                   # Persistent data storage
-├── logs/                   # Application logs
+│   ├── constants.py        # Константы приложения и стили
+│   └── logger.py           # Конфигурация логирования
+├── data/                   # Хранение постоянных данных
+├── logs/                   # Логи приложения
 ├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
 
-## Architecture
+## Архитектура
 
-The application follows the Model-View-Controller (MVC) pattern:
+Приложение следует паттерну Model-View-Controller (MVC):
 
-- **Model**: Handles data and business logic (`models/`)
-- **View**: Manages UI components (`views/`)
-- **Controller**: Coordinates between model and view (`controllers/`)
+- **Модель**: Обрабатывает данные и бизнес-логику (`models/`)
+- **Представление**: Управляет компонентами интерфейса (`views/`)
+- **Контроллер**: Координирует между моделью и представлением (`controllers/`)
 
-## Configuration
+## Конфигурация
 
-Settings are stored in `data/settings.json`:
+Настройки хранятся в `data/settings.json`:
 
 ```json
 {
@@ -86,28 +122,23 @@ Settings are stored in `data/settings.json`:
 }
 ```
 
-Session data is saved in `data/sessions.json`.
+Данные сессий сохраняются в `data/sessions.json`.
 
-## Logging
+## Логирование
 
-Logs are written to `logs/app.log` with the following levels:
-- INFO: General application events
-- ERROR: Error conditions
+Логи записываются в `logs/app.log` со следующими уровнями:
+- INFO: Общие события приложения
+- ERROR: Условия ошибок
 
-## Contributing
+## Вклад в проект
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Форкните репозиторий
+2. Создайте ветку функций (`git checkout -b feature/amazing-feature`)
+3. Внесите изменения (`git commit -m 'Add some amazing feature'`)
+4. Отправьте в ветку (`git push origin feature/amazing-feature`)
+5. Откройте Pull Request
 
-## License
+## Лицензия
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Этот проект лицензирован под MIT License - подробности см. в файле [LICENSE](LICENSE).
 
-## Acknowledgments
-
-- Pomodoro Technique by Francesco Cirillo
-- PyQt5 for the GUI framework
-- Material Design for UI inspiration
